@@ -1,0 +1,11 @@
+<center>
+	<h1 style='padding-top: 18px'>The Sudokutron</h1>
+	<hr noshade width='60%'>
+	<br />
+	<code style='font-size: 16px'>
+		<%= @puzzle.to_s %>
+	</code>
+	<br /><br />
+	<hr noshade width='60%'>
+	All hail The Sudokutron &middot; <%= link_to 'home', root_url %> &middot; <%= link_to 'generate another puzzle', new_sudoku_url %>
+</center>
