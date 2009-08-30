@@ -1,30 +1,29 @@
 class Puzzle
   
-  attr_accessor :board, :rows, :columns
+  attr_accessor :board, :rows, :columns, :possibles
   
   def initialize
     @rows = 9
     @columns = 9
     @board = [0] * @rows
+    @possibles = [0] * @rows
     for row in (0..@rows - 1)
-      @board[row] = [0] * @columns
+      @board[row] = []
+      @possibles[row] = []
+      for column in (0..@columns - 1)
+        @board[row][column] = 0
+        @possibles[row][column] = 0..9
+      end
     end
 
     grid_1_numbers = (1..9).sort_by{rand}
     grid_5_numbers = (1..9).sort_by{rand}
     grid_9_numbers = (1..9).sort_by{rand}
     
-    @board[0][0..2] = grid_1_numbers[0..2]
-    @board[1][0..2] = grid_1_numbers[3..5]
-    @board[2][0..2] = grid_1_numbers[6..8]
-    
-    @board[3][3..5] = grid_5_numbers[0..2]
-    @board[4][3..5] = grid_5_numbers[3..5]
-    @board[5][3..5] = grid_5_numbers[6..8]
-    
-    @board[6][6..8] = grid_9_numbers[0..2]
-    @board[7][6..8] = grid_9_numbers[3..5]
-    @board[8][6..8] = grid_9_numbers[6..8]
+    assign_grid 0..2, 0..2, grid_1_numbers
+    assign_grid 3..5, 3..5, grid_5_numbers
+    assign_grid 6..8, 6..8, grid_9_numbers
+        
   end
   
   
@@ -57,6 +56,18 @@ class Puzzle
     end
     string.chop!
     string += "<br />"
+  end
+  
+  private
+  
+  def assign_grid(rows, cols, incoming)
+    index = 0
+    for row in rows
+      for col in cols
+        @board[row][col] = incoming[index]
+        index = index + 1
+      end
+    end
   end
   
   def logger
