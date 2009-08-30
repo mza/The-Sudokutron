@@ -22,9 +22,9 @@ class Puzzle
     @board[4][3..5] = grid_5_numbers[3..5]
     @board[5][3..5] = grid_5_numbers[6..8]
     
-    @board[6][6..8] = grid_5_numbers[0..2]
-    @board[7][6..8] = grid_5_numbers[3..5]
-    @board[8][6..8] = grid_5_numbers[6..8]
+    @board[6][6..8] = grid_9_numbers[0..2]
+    @board[7][6..8] = grid_9_numbers[3..5]
+    @board[8][6..8] = grid_9_numbers[6..8]
   end
   
   
