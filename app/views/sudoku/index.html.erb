@@ -1,5 +1,17 @@
-<h1>The Sudokutron</h1>
-<hr noshade>
-<ul>
-	<li><%= link_to 'Generate Sudoku puzzle', new_sudoku_url %> </li>
-</ul>
+<% form_tag :action => :command do %>
+<div class='item_container'>
+	<div class='machine item'>
+		<span class='simple'>
+		> booting support vectors<br />
+		> preparing the puzzle board<br />
+		> initializing ancient numerals<br />
+		> reticulating splines<br />
+		> <br />
+		</span>
+		> the sudokutron is ready<br />
+		> prepare for battle<br />
+		><br />
+		><%= text_field_tag :command %>
+	</div>
+</div>
+<% end %>
