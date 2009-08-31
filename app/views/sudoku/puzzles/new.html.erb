@@ -1,3 +1,17 @@
-<code style='font-size: 16px;'>
-	<%= @puzzle.to_html %>
-</code>
+<div class='item_container'>
+	<div class='machine item'>
+		<span class='simple'>
+			> the sudokutron obliges<br /><br/ >
+		</span>
+		<div class='main'>
+			<div class='menu'>
+				> <%= link_to 'solve' %><br/ >
+				> <%= link_to 'another' %><br />
+				> <%= link_to 'home' %><br />
+			</div>
+			<div class='puzzle'>
+				<%= @puzzle.puzzleify(:easy).to_html %>
+			</div>
+		</div>
+	</div>
+</div>

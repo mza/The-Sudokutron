@@ -3,6 +3,7 @@ class Puzzle
   attr_accessor :board, :rows, :columns, :possibles
   
   def initialize
+    
     @rows = 9
     @columns = 9
 
@@ -13,11 +14,17 @@ class Puzzle
       quick_fill
       valid_board = check_valid
     end
-    create_puzzle
+  
   end
   
-  def create_puzzle
-    76.times do
+  def puzzleify(rating)
+    difficulty_rating = { :easy => 76 }
+    create_puzzle(difficulty_rating[rating])
+    self
+  end
+  
+  def create_puzzle(knock_out)
+    knock_out.times do
       @board[rand(@rows)][rand(@columns)] = 0
     end
   end
