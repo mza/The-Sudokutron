@@ -1,7 +1,7 @@
 <h1 style='padding-top: 10px'>The Sudokutron</h1>
 <br />
 <code style='font-size: 16px;'>
-	<%= @puzzle.to_s %>
+	<%= @puzzle.to_html %>
 </code>
 <br /><br /><br />
 all hail sudokutron &middot; <%= link_to 'home', root_url %> &middot; <%= link_to 'generate', new_sudoku_url %>
