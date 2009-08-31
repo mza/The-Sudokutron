@@ -1,7 +1,103 @@
 <div class='item_container'>
 	<div class='machine item'>
 		<span class='simple'>
-		> the sudokutron creates and solves sudoku<br />
+		> the sudokutron is a master of the single numbers<br />
+		</span>
+		<br />
+		<div class='about'>
+			the sudokutron is a tiny ruby app to generate and solve sudoku number puzzles.
+		</div>
+		<div class='about'>
+			sudoku puzzle boards are made up of a collection of latin squares, constrained so that 
+			each numerical symbol appears only once per square, or row and column of adjoining squares.
+		</div>
+		<div class='about'>	
+			<strong>getting started</strong><br /><br />
+			the sudokutron employs a completely autonomous algorithm to generate sudoku. to get started, you will need:
+			<ul>
+				<li>an empty 9x9 puzzle board</li>
+				<li>a three dimensional array</li>
+				<li>a set of constraints and a method of enforcing them</li>
+				<li>81 integers, from 1 to 9</li>
+				<li>about 90 minutes ;)</li>
+			</ul>
+		</div>
+		<div class='about'>
+			<strong>the puzzle board</strong><br /><br />
+			each sudoku puzzle takes place on a board: when generating a new puzzle the sudokutron starts
+			with a completely empty, 9x9 board.<br /><br />
+			<code>
+				+-------+-------+-------+<br />
+				| _  _  _ | _  _  _ | _  _  _ |<br />
+				| _  _  _ | _  _  _ | _  _  _ |<br />
+				| _  _  _ | _  _  _ | _  _  _ |<br />
+				+-------+-------+-------+<br />
+				| _  _  _ | _  _  _ | _  _  _ |<br />
+				| _  _  _ | _  _  _ | _  _  _ |<br />
+				| _  _  _ | _  _  _ | _  _  _ |<br />
+				+-------+-------+-------+<br />
+				| _  _  _ | _  _  _ | _  _  _ |<br />
+				| _  _  _ | _  _  _ | _  _  _ |<br />
+				| _  _  _ | _  _  _ | _  _  _ |<br />
+				+-------+-------+-------+<br />
+			</code><br />
+			the sudokutron represents this internally as a simple row-by-column array of arrays. each element in 
+			the grid is initially set to zero. 		
+		</div>
+		<div class='about'>
+			<strong>alpha and omega</strong><br /><br />
+			from this starting point, the sudokutron aims to fill the game board with a set of values which make up a valid sudoku solution. 
+			the puzzle is then created by knocking out values which are replaced by the puzzler. the puzzle is solved when all missing values are replaced. like all good mysteries, the sudokutron starts with the answer, and works backwards to create a puzzle.<br /><br />
+		</div>
+		<div class='about'>
+			<strong>puzzle generation</strong><br /><br />
+			the empty board is seeded with a number of random values.<br /><br />
+			<code>
+				+-------+-------+-------+<br />
+				| 7  2  8 | _  _  _ | _  _  _ |<br />
+				| 6  1  9 | _  _  _ | _  _  _ |<br />
+				| 3  5  4 | _  _  _ | _  _  _ |<br />
+				+-------+-------+-------+<br />
+				| _  _  _ | 3  7  9 | _  _  _ |<br />
+				| _  _  _ | 5  8  2 | _  _  _ |<br />
+				| _  _  _ | 1  6  4 | _  _  _ |<br />
+				+-------+-------+-------+<br />
+				| _  _  _ | _  _  _ | 3  6  1 |<br />
+				| _  _  _ | _  _  _ | 5  4  9 |<br />
+				| _  _  _ | _  _  _ | 7  8  2 |<br />
+				+-------+-------+-------+<br />
+			</code>
+			<br/ >
+			the two dimensional array that stores the value of each individual element at each position of the board is extended with a third piece of information: an array holding each possible value for that element.
+			<br /><br/ >
+			To start with each position on the grid is empty. therefore, each element has the possibility of being set to any value from 1 to 9.
+			<br /><br />
+			the algorithm iterates over each empty element on the board and assigns a possible value to one element at a time before validating the board. on validation, the possible values at each position are compared against the sudoku rules and updated to reflect the new board. if the puzzle is valid, the process continues. if not, the algorithm steps backwards and tries again.
+		</div>
+		<div class='about'>
+			<strong>puzzle evaluation</strong><br /><br />
+			the sudokutron understands the standard sudoku rules, and is able to evaluate an arbitrary board for 
+			whether it is complete, incomplete or breaks any of these rules. these rules are used to ensure that a
+			newly generated puzzle is solvable.
+			<br /><br />
+			internally, these rules are applied to the game board array of arrays, and return the validity state of the 
+			row and column values.
+		</div>
+		<div class='about'>
+			<strong>impossible puzzles and multiple solutions</strong><br /><br/ >
+			the sudokutron searches for a single solution, but does not guarantee it is unique. since a real person will solve the puzzles, this is probably good enough, although the algorithm could be extended to generate puzzles with only a single solution. when playing against the sudokutron, your attempt is scored against the original solution, rather than being reasoned independently. if it looks like your solution is correct but the sudokutron disagrees, you're probably playing a puzzle with multiple solutions.
+			<br /><br />
+			should the sudokutron algorithm hit a dead end and create an unsolvable board, it resets the empty grid and starts again. all puzzles presented by the sudokutron are valid and solvable.
+		</div>
+		<div class='about'>
+			<strong>here comes the science bit</strong><br /><br/ >
+			the sudokutron algorithm essentially treats the generation of a puzzle as a minimisation problem, and takes a random walk along the 'puzzle landscape' using the sudoku rules as a scoring function to find a local minima.
+		</div>
+		<div class='about'>
+			<span class='simple'>
+				a little project from <a href='http://twitter.com/mza'>the mza</a> &middot; 2009
+			</span>
+		</div>
 		<%= link_to '&lt;- home', root_url %></a>
 	</div>
 </div>

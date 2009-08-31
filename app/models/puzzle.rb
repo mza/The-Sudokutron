@@ -11,8 +11,10 @@ class Puzzle
       valid_board = false
       while !valid_board
         seed_board
+        logger.debug self.to_s
         reduce
         quick_fill
+        logger.debug self.to_s
         valid_board = check_valid
       end
     else
