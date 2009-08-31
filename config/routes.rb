@@ -11,6 +11,8 @@ ActionController::Routing::Routes.draw do |map|
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   map.resources :sudoku
+  map.resources :puzzles, :controller => 'sudoku/puzzles'
+  map.resources :solutions, :controller => 'sudoku/solutions'  
   map.resource :help, :controller => 'help'
 
   # Sample resource route with options:
