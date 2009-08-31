@@ -5,14 +5,18 @@
 		</span>
 		<div class='main'>
 			<div class='menu'>
-				> <%= link_to 'solve' %><br/ >
+				> <%= link_to 'submit', 'javascript:submit();'%><br /><br />
+				> <%= link_to 'solve', 'javascript:swap();' %><br/ >
 				> <%= link_to 'another' %><br />
 				> <%= link_to 'home' %><br />
 			</div>
 			<div class='puzzle'>
-				<%= @puzzle.puzzleify(:easy).to_html %>
-				<br /><br />
-				<%= @puzzle.to_html %>
+				<div id='puzzle'>
+					<%= @puzzle.puzzleify(:easy).to_html %>
+				</div>
+				<div id='solution' style='display: none;'>
+					<%= @puzzle.to_html('solution') %>
+				</div>
 			</div>
 		</div>
 		

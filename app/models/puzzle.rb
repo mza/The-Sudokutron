@@ -102,7 +102,10 @@ class Puzzle
     valid
   end
   
-  def to_html
+  def to_html(prefix = nil)
+    unless prefix.nil?
+      prefix = "#{prefix}_"
+    end
     string = "<table width='100%' cellspacing='0' cellpadding='0' class='puzzle'>"
     for row in 0..(@rows - 1)
       if (row + 2) % 3 == 1
@@ -112,14 +115,14 @@ class Puzzle
       end
       string += "<tr>"        
       for column in 0..(@columns - 1)
-        to_insert = "<input type='text' class='number' name='number' value='_' size='1' />"
+        to_insert = "<input type='text' class='number' id='#{row}_#{column}' name='number' value='_' size='1' />"
         if (column + 2) % 3 == 1
           side_limit = " side_limit"
         else
           side_limit = ""
         end
         unless @board[row][column] == 0
-          to_insert = @board[row][column]
+          to_insert = "<span id='#{prefix}#{row}_#{column}'>#{@board[row][column]}</span>"
         end
         string += "<td class='#{td_class} #{side_limit}'>#{to_insert}</td>"
       end
