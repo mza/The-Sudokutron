@@ -3,7 +3,8 @@ module SudokuHelper
   def challenge_message
     [ 
       "the sudokutron feels a disturbance in the force",
-      "all hail the sudokutron"
+      "challenge accepted", 
+      "the sudokutron obliges"
      ].rand
   end
   
