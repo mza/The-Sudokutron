@@ -1,10 +1,18 @@
 <div class='item_container'>
 	<div class='machine item'>
 		<span class='simple'>
-			> you are weak : the sudokutron knows all<br /><br/ >
+			> the sudokutron<br /><br/ >
 		</span>
-		<div class='puzzle'>
-			<%= @puzzle.to_html %>
+		<div class='main'>
+			<div class='menu'>
+				> <%= link_to 'another', new_solution_url %><br />
+				> <%= link_to 'challenge', new_puzzle_url %><br />				
+				> <%= link_to 'home', root_url %><br />
+				
+			</div>
+			<div class='puzzle'>
+				<%= @puzzle.to_html %>
+			</div>
 		</div>
 	</div>
 </div>

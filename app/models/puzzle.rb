@@ -115,7 +115,7 @@ class Puzzle
       end
       string += "<tr>"        
       for column in 0..(@columns - 1)
-        to_insert = "<input type='text' class='number' id='#{row}_#{column}' name='number' value='_' size='1' />"
+        to_insert = "<input type='text' class='number' id='#{row}_#{column}' name='number' maxlength='1' value='' size='1' />"
         if (column + 2) % 3 == 1
           side_limit = " side_limit"
         else

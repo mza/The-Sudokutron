@@ -39,6 +39,7 @@ div.footer {
 	text-align: center;
 	font-size: 11px;
 	color: #373737;
+	margin-bottom: 20px;
 }
 
 div.content {
@@ -83,6 +84,7 @@ input.entry {
 
 input.number {
 	font-size: 22px;
+	border-bottom: 1px solid #efefef;
 	margin: 0px;
 }
 
@@ -97,7 +99,7 @@ a:hover {
 
 div.menu {
 	float: left;
-	width: 100px;
+	width: 120px;
 	margin-left: 30px;
 }
 
