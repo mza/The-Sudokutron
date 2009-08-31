@@ -2,29 +2,41 @@ class Puzzle
   
   attr_accessor :board, :rows, :columns, :possibles
   
-  def initialize
+  def initialize(incoming = nil)
     
     @rows = 9
     @columns = 9
 
-    valid_board = false
-    while !valid_board
-      seed_board
-      reduce
-      quick_fill
-      valid_board = check_valid
+    if incoming.nil?
+      valid_board = false
+      while !valid_board
+        seed_board
+        reduce
+        quick_fill
+        valid_board = check_valid
+      end
+    else
+      @board = incoming
     end
   
   end
   
   def puzzleify(rating)
-    difficulty_rating = { :easy => 76 }
-    create_puzzle(difficulty_rating[rating])
-    self
+    new_board = []
+    for row in 0..(@rows -1)
+      new_board[row] = []
+      for column in 0..(@columns - 1)
+        new_board[row][column] = @board[row][column]
+      end
+    end
+    new_puzzle = Puzzle.new(new_board)
+    new_puzzle.create_puzzle :easy
+    return new_puzzle
   end
   
-  def create_puzzle(knock_out)
-    knock_out.times do
+  def create_puzzle(rating)
+    difficulty = { :easy => 74 }
+    difficulty[rating].times do
       @board[rand(@rows)][rand(@columns)] = 0
     end
   end
@@ -91,19 +103,42 @@ class Puzzle
   end
   
   def to_html
-    self.to_s_with_line_ending "<br />"
+    string = "<table width='100%' cellspacing='0' cellpadding='0' class='puzzle'>"
+    for row in 0..(@rows - 1)
+      if (row + 2) % 3 == 1
+        td_class = "limit"
+      else
+        td_class = ""
+      end
+      string += "<tr>"        
+      for column in 0..(@columns - 1)
+        to_insert = "<input type='text' class='number' name='number' value='_' size='1' />"
+        if (column + 2) % 3 == 1
+          side_limit = " side_limit"
+        else
+          side_limit = ""
+        end
+        unless @board[row][column] == 0
+          to_insert = @board[row][column]
+        end
+        string += "<td class='#{td_class} #{side_limit}'>#{to_insert}</td>"
+      end
+      string += "</tr>"
+    end
+    string += "</table>"
+    string
   end
   
   def to_s
     self.to_s_with_line_ending "\n"
   end
   
-  def to_s_with_line_ending(ending)
+  def to_s_with_line_ending(ending, form = false)
     string = spacer_row + ending
     for row in 0..(@rows - 1)
       string += "|"
       for column in 0..(@columns - 1)
-        to_insert = "_"
+          to_insert = "_"
         unless @board[row][column] == 0
           to_insert = @board[row][column]
         end
