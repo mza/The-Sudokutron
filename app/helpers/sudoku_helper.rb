@@ -8,4 +8,12 @@ module SudokuHelper
      ].rand
   end
   
+  def welcome_message
+    [ 
+      "do you want to play a game?",
+      "prepare for battle"
+     ].rand
+    
+  end
+  
 end
